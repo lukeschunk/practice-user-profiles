@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cors = require('cors');
+var config = require('./config.js');
+var userCtrl = require('./controllers/userCtrl.js');
+var profileCtrl = require('./controllers/profileCtrl.js');
 
 var app = express();
 
@@ -29,11 +32,13 @@ app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
-app.use(session({
-    secret: "alkjsleifl",
-    saveUninitialized: true,
-    resave: true
-}));
+app.use(session({ secret: config.sessionSecret }));
+
+//app.use(session({
+//    secret: "alkjsleifl",
+//    saveUninitialized: true,
+//    resave: true
+//}));
 
 
 //____________________________________________POST_____________________________________________
